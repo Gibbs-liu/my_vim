@@ -27,6 +27,8 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Raimondi/delimitMate'
 Plugin 'inkarkat/vim-mark'
 Plugin 'inkarkat/vim-ingo-library'
+Plugin 'jupyter-vim/jupyter-vim'
+Plugin 'sillybun/vim-repl'
 
 
 " 安装插件写在这之前
@@ -157,3 +159,35 @@ highlight MatchParen cterm=underline ctermbg=NONE ctermfg=NONE
 
 " 保存历史
 set history=200
+
+" vim_jupyter
+" let g:vim_virtualenv_path = '/Users/liuhaoyu/miniforge3/envs/tf/'
+" if exists('g:vim_virtualenv_path')
+    " pythonx import os; import vim
+    " pythonx activate_this = os.path.join(vim.eval('g:vim_virtualenv_path'), 'bin/activate_this.py')
+    " pythonx with open(activate_this) as f: exec(f.read(), {'__file__': activate_this})
+" endif
+
+" vim repl
+" websit: https://github.com/sillybun/vim-repl
+" 这是在vim里面使用repl的插件，感觉比pycharm的还好用。
+" 使用方法大概是
+"   先用下面的命令打开repl
+nnoremap <leader>z :REPLToggle<CR>
+"   然后<leader>w可以运行一行或者一个代码块d
+"   三种方式：  1.光标在行首，运行该行
+"               2.选中若干行，运行若干行
+"               3.选中单词，打印该单词
+let g:repl_position=0
+let g:repl_ipython_version = '7.26'
+let g:repl_program={'python':['ipython'], 'default':['zsh']}
+" If g:repl_auto_sends is defined, once user sends a line starts with any
+" pattern contained in the list, whole block will be send automatically.
+let g:repl_auto_sends = ['class ', 'def ', 'for ', 'if ', 'while ', 'with ', 'async def', '@', 'try']
+let g:repl_python_auto_send_unfinish_line = 1
+let g:repl_python_auto_import = 1
+let g:repl_python_automerge=1
+let g:repl_output_copy_to_register = "t"
+nnoremap <leader>h :REPLHide<CR>
+
+
